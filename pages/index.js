@@ -6,7 +6,6 @@ import {
   Box,
   SimpleGrid,
   Button,
- 
   ListItem,
   useColorModeValue,
   chakra
@@ -18,18 +17,29 @@ import Layout from '../components/layouts/article'
 import Section from '../components/section'
 import { Stack } from '@chakra-ui/react'
 import { Text } from '@chakra-ui/react'
-import { Badge, Wrap, WrapItem, List, ListIcon } from '@chakra-ui/react';
+import { Badge, Wrap, WrapItem, List, ListIcon } from '@chakra-ui/react'
 import { GridItem } from '../components/grid-item'
-import { IoLogoTwitter, IoLogoInstagram, IoLogoGithub, IoLogoLinkedin} from 'react-icons/io5'
+import {
+  IoLogoTwitter,
+  IoLogoInstagram,
+  IoLogoGithub,
+  IoLogoLinkedin
+} from 'react-icons/io5'
 import Image from 'next/image'
-import { MdStar } from 'react-icons/md';
+import { MdStar } from 'react-icons/md'
 const ProfileImage = chakra(Image, {
   shouldForwardProp: prop => ['width', 'height', 'src', 'alt'].includes(prop)
 })
 
-const skills = ['Cisco', 'Mikrotik', 'VMware', 'Linux', 'Networking', 'Firewall'];
+const skills = [
+  'Cisco',
+  'Mikrotik',
+  'VMware',
+  'Linux',
+  'Networking',
+  'Firewall'
+]
 const Home = () => (
-  
   <Layout>
     <Container>
       <Box
@@ -46,7 +56,7 @@ const Home = () => (
       <Box data-aos="fade-up" display={{ md: 'flex' }}>
         <Box flexGrow={1}>
           <Heading as="h2" variant="page-title">
-           Satrio Janara Arafa
+            Satrio Janara Arafa
           </Heading>
           <p>Network Administrator</p>
         </Box>
@@ -82,14 +92,17 @@ const Home = () => (
           About
         </Heading>
         <Paragraph data-aos="fade-up">
-         👋 Hey there!
-I'm a passionate Network Administrator who loves keeping systems secure, connections stable, and downtime at zero. I work behind the scenes to make sure networks run smoothly — from configuring routers and managing firewalls to monitoring traffic and troubleshooting issues.
-
-I speak fluent TCP/IP, treat every ping like a check-in, and see every alert as a challenge to solve. Whether it's maintaining uptime or optimizing performance, I’m here to keep the digital world connected.
-
-When I’m not managing networks, you’ll probably find me exploring new tech tools, scripting automation, or helping friends fix their Wi-Fi.
-
-Let’s stay connected — the signal is strong!
+          👋 Hey there! I'm a passionate Network Administrator who loves keeping
+          systems secure, connections stable, and downtime at zero. I work
+          behind the scenes to make sure networks run smoothly — from
+          configuring routers and managing firewalls to monitoring traffic and
+          troubleshooting issues. I speak fluent TCP/IP, treat every ping like a
+          check-in, and see every alert as a challenge to solve. Whether it's
+          maintaining uptime or optimizing performance, I’m here to keep the
+          digital world connected. When I’m not managing networks, you’ll
+          probably find me exploring new tech tools, scripting automation, or
+          helping friends fix their Wi-Fi. Let’s stay connected — the signal is
+          strong!
         </Paragraph>
         <Box data-aos="fade-up" align="center" my={4}>
           <NextLink href="/works" passHref scroll={false}>
@@ -112,110 +125,116 @@ Let’s stay connected — the signal is strong!
           <BioYear>2023</BioYear>
           Network Computer Engineering student on SMK Darussalam Karangpucung
         </BioSection>
-      
-        
       </Section>
 
-   <Section data-aos="fade-up" delay={0.3}>
-  <Heading data-aos="fade-up" as="h3" variant="section-title" mb={4}>
-    I ♥
-  </Heading>
+      <Section data-aos="fade-up" delay={0.3}>
+        <Heading data-aos="fade-up" as="h3" variant="section-title" mb={4}>
+          I ♥
+        </Heading>
 
-  <Stack data-aos="fade-up" spacing={3}>
-    <Text>💻 Networking</Text>
-    <Text>🖥️ Linux CLI</Text>
-    <Text color="pink.400">🛡️ Cybersecurity</Text>
-    <Text>📊 Monitoring Systems</Text>
-    <Text>☕ Coffee</Text>
-    <Text>🛠️ Troubleshooting at 2 AM</Text>
-  </Stack>
-</Section>
-  <Heading data-aos="fade-up" as="h3" variant="section-title" mb={4}>
-    Skill
-  </Heading>
+        <Stack data-aos="fade-up" spacing={3}>
+          <Text>💻 Networking</Text>
+          <Text>🖥️ Linux CLI</Text>
+          <Text color="pink.400">🛡️ Cybersecurity</Text>
+          <Text>📊 Monitoring Systems</Text>
+          <Text>☕ Coffee</Text>
+          <Text>🛠️ Troubleshooting at 2 AM</Text>
+        </Stack>
+      </Section>
+      <Heading data-aos="fade-up" as="h3" variant="section-title" mb={4}>
+        Skill
+      </Heading>
 
-<Section data-aos="fade-up">
-  <Wrap spacing={3}>
-      {skills.map((skill) => (
-        <WrapItem data-aos="fade-up" key={skill}>
-          <Badge 
-            variant="solid" 
-            colorScheme="teal" 
-            fontSize="1em"
-            px={3}
-            py={1}
-            borderRadius="full"
-          >
-            {skill}
-          </Badge>
-        </WrapItem>
-      ))}
-    </Wrap>
-</Section>
-
-
+      <Section data-aos="fade-up">
+        <Wrap spacing={3}>
+          {skills.map(skill => (
+            <WrapItem data-aos="fade-up" key={skill}>
+              <Badge
+                variant="solid"
+                colorScheme="teal"
+                fontSize="1em"
+                px={3}
+                py={1}
+                borderRadius="full"
+              >
+                {skill}
+              </Badge>
+            </WrapItem>
+          ))}
+        </Wrap>
+      </Section>
 
       <Section delay={0.3} data-aos="fade-up">
         <Heading as="h3" variant="section-title">
           Achievements
         </Heading>
-        
-         <List spacing={3}>
-      <ListItem data-aos="fade-up">
-        <ListIcon as={MdStar} color="yellow.400" />
-        5th Place Winner at IT Network System Administration LKS 2025, Cilacap Regency
-      </ListItem>
-      {/* Bisa tambah item lain di sini */}
-    </List>
-        
-            
-        
+
+        <List spacing={3}>
+          <ListItem data-aos="fade-up">
+            <ListIcon as={MdStar} color="yellow.400" />
+            5th Place Winner at IT Network System Administration LKS 2025,
+            Cilacap Regency
+          </ListItem>
+          {/* Bisa tambah item lain di sini */}
+        </List>
       </Section>
 
       <Section data-aos="fade-up" delay={0.3}>
         <Heading as="h3" variant="section-title">
-       Social Media
+          Social Media
         </Heading>
         <List>
           <ListItem>
-            <Link href="https://github.com/Vishwas-10" target="_blank">
+            <Link href="https://github.com/satrio100" target="_blank">
               <Button
                 variant="ghost"
                 colorScheme="teal"
                 leftIcon={<IoLogoGithub />}
               >
-                @Satrionjay
+                @nexzen
               </Button>
             </Link>
           </ListItem>
           <ListItem>
-            <Link href="https://www.linkedin.com/in/vishwas-saini-384212218/" target="_blank">
+            <Link
+              href="http://www.linkedin.com/in/satrio-janara-arafa-975b4a295"
+              target="_blank"
+            >
               <Button
                 variant="ghost"
                 colorScheme="teal"
                 leftIcon={<IoLogoLinkedin />}
               >
-                @Vishwas Saini
+                @Satrio Janara Arafa
               </Button>
             </Link>
           </ListItem>
           <ListItem>
-            <Link href="https://www.instagram.com/vishwas10/" target="_blank">
+            <Link
+              href="https://www.instagram.com/arfstr9?igsh=MXBiOWUzd24weTMxbg=="
+              target="_blank"
+            >
               <Button
                 variant="ghost"
                 colorScheme="teal"
                 leftIcon={<IoLogoInstagram />}
               >
-                @Vishwas10
+                @arfstr9
               </Button>
             </Link>
           </ListItem>
         </List>
 
         <Box align="center" my={4}>
-          <NextLink href="https://drive.google.com/file/d/1f8wTm2_UAicf9EZ5vJ4tMVEmUMLiXR2k/view?usp=sharing" passHref scroll={false}>
+          <NextLink
+            href="https://drive.google.com/file/d/1f8wTm2_UAicf9EZ5vJ4tMVEmUMLiXR2k/view?usp=sharing"
+            passHref
+            scroll={false}
+          >
             <Button rightIcon={<ChevronRightIcon />} colorScheme="teal">
-            <a href="https://drive.google.com/file/d/1f8wTm2_UAicf9EZ5vJ4tMVEmUMLiXR2k/view?usp=sharing">Download Resume</a> 
+              <a href="https://drive.google.com/file/d/1f8wTm2_UAicf9EZ5vJ4tMVEmUMLiXR2k/view?usp=sharing">
+                Download Resume
+              </a>
             </Button>
           </NextLink>
         </Box>

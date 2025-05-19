@@ -2,7 +2,7 @@ import { Container, Heading, SimpleGrid, Divider } from '@chakra-ui/react'
 import Layout from '../components/layouts/article'
 import Section from '../components/section'
 import { WorkGridItem } from '../components/grid-item'
-
+import { Text } from '@chakra-ui/react'
 import thumbComs from '../public/images/works/coms-home.png'
 import thumbadulting101 from '../public/images/works/adulting101-home.png'
 import thumbFakeFace from '../public/images/works/fakeface-home.png'
@@ -14,6 +14,7 @@ const Blogs = () => {
   const [posts, setPosts] = useState([])
   const [page, setPage] = useState(1)
   const [maxPage, setMaxPage] = useState(1)
+  const [isLoading, setIsLoading] = useState(true)
 
   const getBlogs = async () => {
     try {
@@ -21,6 +22,7 @@ const Blogs = () => {
       console.log(response)
       const totalPages = parseInt(response.headers['x-wp-totalpages'], 10)
       setMaxPage(totalPages) // simpan max halaman
+      setIsLoading(false)
 
       const formattedPosts = response.data.map(post => ({
         id: post.id,
@@ -47,25 +49,50 @@ const Blogs = () => {
     <Layout title="Works">
       <Container>
         <Heading as="h3" fontSize={20} mb={4}>
-          Projects
+          Blogs
         </Heading>
 
-        <SimpleGrid columns={[1, 1, 2]} gap={6}>
-          {posts.map(post => (
-            <Section key={post.id}>
-              <WorkGridItem
-                id={post.id}
-                link={post.link}
-                title={post.title}
-                thumbnail={post.featuredImage}
-              >
-                {post.excerpt}
-              </WorkGridItem>
-            </Section>
-          ))}
-        </SimpleGrid>
+        {isLoading ? (
+          <Text
+            textAlign="center"
+            mx="auto"
+            display="block"
+            width="100%"
+            fontSize="lg"
+            color="gray.500"
+            my={4}
+          >
+            Loading...
+          </Text>
+        ) : posts.length > 0 ? (
+          <SimpleGrid columns={[1, 1, 2]} gap={6}>
+            {posts.map(post => (
+              <Section key={post.id}>
+                <WorkGridItem
+                  id={post.id}
+                  link={post.link}
+                  title={post.title}
+                  thumbnail={post.featuredImage}
+                >
+                  {post.excerpt}
+                </WorkGridItem>
+              </Section>
+            ))}
+          </SimpleGrid>
+        ) : (
+          <Text textAlign="center" fontSize="lg" color="gray.500" mt={4}>
+            Nothing blogs
+          </Text>
+        )}
       </Container>
-      <div style={{ display: 'flex', gap: '1rem' }}>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          gap: '1rem',
+          marginBottom: '2rem'
+        }}
+      >
         <button
           onClick={() => setPage(p => Math.max(p - 1, 1))}
           disabled={page === 1}
