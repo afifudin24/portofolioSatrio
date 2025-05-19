@@ -7,50 +7,84 @@ import thumbComs from '../public/images/works/coms-home.png'
 import thumbadulting101 from '../public/images/works/adulting101-home.png'
 import thumbFakeFace from '../public/images/works/fakeface-home.png'
 import thumbHandGesture from '../public/images/works/handgesture-home.png'
+import apiServices from '../services/apiServices'
+import { useEffect, useState } from 'react'
 
 const Blogs = () => {
-    return (
-       <Layout title="Works">
-    <Container>
-      <Heading as="h3" fontSize={20} mb={4}>
-        Projects
-      </Heading>
+  const [posts, setPosts] = useState([])
+  const [page, setPage] = useState(1)
+  const [maxPage, setMaxPage] = useState(1)
 
-      <SimpleGrid columns={[1, 1, 2]} gap={6}>
-        <Section>
-          <WorkGridItem id="COMS" title="Canteen Management System" thumbnail={thumbComs}>
-            A Lamp Stack webapp, using which the canteen vendor can manage food orders efficiently.
-          </WorkGridItem>
-        </Section>
-        <Section>
-          <WorkGridItem
-            id="Adulting101"
-            title="Adulting101"
-            thumbnail={thumbadulting101}
-          >
-            A CRUD based Django webapp, with a Markdown to HTML Converter and an integrated AI chat bot.
-          </WorkGridItem>
-        </Section>
+  const getBlogs = async () => {
+    try {
+      const response = await apiServices.getBlog(page)
+      console.log(response)
+      const totalPages = parseInt(response.headers['x-wp-totalpages'], 10)
+      setMaxPage(totalPages) // simpan max halaman
 
-        <Section delay={0.1}>
-          <WorkGridItem
-            id="fakeface"
-            title="Fake Face Classifier"
-            thumbnail={thumbFakeFace}
-          >
-            A Machine Learning model using CNN to classify fake images generted using Generative Adversarial Networks (GANs).
-          </WorkGridItem>
-        </Section>
-        <Section delay={0.1}>
-          <WorkGridItem id="handgesture" thumbnail={thumbHandGesture} title="Hand Gesture Recognition">
-          A machine learning Model that will Recognize Hand Gestures in real time using CNN and automated using Raspberry pi.
-          </WorkGridItem>
-        </Section>
-      </SimpleGrid>
-    </Container>
-  </Layout>
-    )
+      const formattedPosts = response.data.map(post => ({
+        id: post.id,
+        title: post.title.rendered,
+        excerpt: post.excerpt.rendered,
+        categories: post.categories, // ini ID, bisa fetch lagi jika perlu nama
+        tags: post.tags, // ini ID juga
+        link: post.link,
+        featuredImage: post._embedded['wp:featuredmedia']
+          ? post._embedded['wp:featuredmedia'][0].source_url
+          : null
+      }))
+
+      setPosts(formattedPosts)
+      console.log(formattedPosts)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+  useEffect(() => {
+    getBlogs()
+  }, [page])
+  return (
+    <Layout title="Works">
+      <Container>
+        <Heading as="h3" fontSize={20} mb={4}>
+          Projects
+        </Heading>
+
+        <SimpleGrid columns={[1, 1, 2]} gap={6}>
+          {posts.map(post => (
+            <Section key={post.id}>
+              <WorkGridItem
+                id={post.id}
+                link={post.link}
+                title={post.title}
+                thumbnail={post.featuredImage}
+              >
+                {post.excerpt}
+              </WorkGridItem>
+            </Section>
+          ))}
+        </SimpleGrid>
+      </Container>
+      <div style={{ display: 'flex', gap: '1rem' }}>
+        <button
+          onClick={() => setPage(p => Math.max(p - 1, 1))}
+          disabled={page === 1}
+        >
+          Previous
+        </button>
+        <span>
+          Page {page} of {maxPage}
+        </span>
+        <button
+          onClick={() => setPage(p => Math.min(p + 1, maxPage))}
+          disabled={page === maxPage}
+        >
+          Next
+        </button>
+      </div>
+    </Layout>
+  )
 }
 
-export default Blogs;
+export default Blogs
 export { getServerSideProps } from '../components/chakra'
