@@ -23,7 +23,8 @@ import {
   IoLogoTwitter,
   IoLogoInstagram,
   IoLogoGithub,
-  IoLogoLinkedin
+  IoLogoLinkedin,
+  IoLogoWebComponent
 } from 'react-icons/io5'
 import Image from 'next/image'
 import { MdStar } from 'react-icons/md'
