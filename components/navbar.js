@@ -77,6 +77,9 @@ const Navbar = props => {
           <LinkItem href="/blogs" path={path}>
             Blogs
           </LinkItem>
+          <LinkItem href="/certificates" path={path}>
+            Certificates
+          </LinkItem>
           {/* <LinkItem
             target="_blank"
             href="https://github.com/Vishwas-10/Vishwas-s-Portfolio"

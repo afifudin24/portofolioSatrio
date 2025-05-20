@@ -18,6 +18,30 @@ const apiServices = {
     } catch (err) {
       return err.response
     }
+  },
+  getProject : async () => {
+    try {
+      const response = await axios.get('https://ngide.ynzhiao.my.id/api/getPost/3');
+      return response
+    } catch (err) {
+      return err.response
+    }
+  },
+  getProjectById : async (id) => {
+    try {
+      const response = await axios.get(`https://ngide.ynzhiao.my.id/api/showPost/${id}`);
+      return response
+    } catch (err) {
+      return err.response
+    }
+  },
+  getCertificate : async () => {
+    try {
+      const response = await axios.get('https://ngide.ynzhiao.my.id/api/getCertificate/3');
+      return response
+    } catch (err) {
+      return err.response
+    }
   }
 }
 
