@@ -185,13 +185,13 @@ const Home = () => (
         </Heading>
         <List>
           <ListItem>
-            <Link href="https://github.com/satrio100" target="_blank">
+            <Link href="https://github.com/nexzen67" target="_blank">
               <Button
                 variant="ghost"
                 colorScheme="teal"
                 leftIcon={<IoLogoGithub />}
               >
-                @nexzen
+                @nexzen67
               </Button>
             </Link>
           </ListItem>
@@ -220,6 +220,21 @@ const Home = () => (
                 leftIcon={<IoLogoInstagram />}
               >
                 @arfstr9
+              </Button>
+            </Link>
+          </ListItem>
+           <ListItem>
+            <Link
+              href="https://tkj.smkdaka.sch.id"
+              target="_blank"
+            >
+              <Button
+                variant="ghost"
+                colorScheme="teal"
+                leftIcon={<IoLogoWebComponent
+                 />}
+              >
+                TKJ DAKA
               </Button>
             </Link>
           </ListItem>
